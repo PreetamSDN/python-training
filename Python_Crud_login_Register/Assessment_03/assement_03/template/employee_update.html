@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        input[type="datetime-local"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            margin: 10px 0;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'update_employee' obj.id %}" method="POST">
+        {% csrf_token %}
+        <h2>Update Employee</h2>
+        
+        <input type="text" placeholder="First Name" name="first_name" value="{{obj.first_name}}" required><br>
+        <input type="text" placeholder="Last Name" name="last_name" value="{{obj.last_name}}" required><br>
+        <input type="text" placeholder="Department" name="department" value="{{obj.department}}" required><br>
+        <input type="text" placeholder="Position" name="position" value="{{obj.position}}" required><br>
+        <input type="date" placeholder="Date of Birth" name="date_of_birth" value="{{obj.date_of_birth}}" required><br>
+        <input type="date" placeholder="Date Joined" name="date_joined" value="{{obj.date_joined}}" required><br>
+        <input type="number" placeholder="Salary" name="salary" value="{{obj.salary}}" required><br>
+        
+        <span>Is Full Time?</span>
+        <input type="checkbox" name="is_full_time" {% if obj.is_full_time %}checked{% endif %}><br>
+        
+        <input type="text" placeholder="Email" name="email" value="{{obj.email}}" required><br>
+        <input type="text" placeholder="Phone Number" name="phone_number" value="{{obj.phone_number}}" required><br>
+        <input type="text" placeholder="Address" name="address" value="{{obj.address}}" required><br>
+        <input type="text" placeholder="City" name="city" value="{{obj.city}}" required><br>
+        <input type="text" placeholder="State" name="state" value="{{obj.state}}" required><br>
+        <input type="datetime-local" placeholder="Last Performance Review" name="last_performance_review" value="{{obj.last_performance_review}}" required><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

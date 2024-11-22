@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Employee Details</h1>
+    <table>
+        <tr>
+            <td>Employee ID</td>
+            <td>{{obj.employee_id}}</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>{{obj.first_name}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{obj.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>{{obj.department}}</td>
+        </tr>
+        <tr>
+            <td>Position</td>
+            <td>{{obj.position}}</td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td>{{obj.date_of_birth}}</td>
+        </tr>
+        <tr>
+            <td>Date Joined</td>
+            <td>{{obj.date_joined}}</td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td>{{obj.salary}}</td>
+        </tr>
+        <tr>
+            <td>Full Time</td>
+            <td>{{obj.is_full_time}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{obj.email}}</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>{{obj.phone_number}}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{obj.address}}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>{{obj.city}}</td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td>{{obj.state}}</td>
+        </tr>
+        <tr>
+            <td>Last Performance Review</td>
+            <td>{{obj.last_performance_review}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

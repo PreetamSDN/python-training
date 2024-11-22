@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        input[type="datetime-local"],
+        input[type="checkbox"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+    </style>
+    <script>
+        async function checkEmailUnique(email) {
+            const response = await fetch(`/check-email?email=${(email)}`);
+            const result = await response.json();
+            return result.isUnique; // Returns true if email is unique
+        }
+
+        async function validateForm() {
+            const salary = document.getElementById('salary').value;
+            const phoneNumber = document.getElementById('phone_number').value;
+            const email = document.getElementById('email').value;
+
+            if (salary <= 0) {
+                alert("Salary must be a positive number.");
+                return false;
+            }
+
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                alert("Phone number must be exactly 10 digits.");
+                return false;
+            }
+
+            const isEmailUnique = await checkEmailUnique(email);
+            if (!isEmailUnique) {
+                alert("Email must be unique.");
+                return false;
+            }
+
+            return true; // If all validations pass
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Employee Form</h1>
+    <form action="{% url 'index' %}" method="POST" onsubmit="return validateForm();">
+        {% csrf_token %}
+        <div>
+            <label for="employee_id">Employee ID</label>
+            <input type="text" id="employee_id" name="employee_id" placeholder="Employee ID" required>
+
+        
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" placeholder="Department" required>
+
+            <label for="position">Position</label>
+            <input type="text" id="position" name="position" placeholder="Position" required>
+
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+
+            <label for="date_joined">Date Joined</label>
+            <input type="date" id="date_joined" name="date_joined" required>
+
+            <label for="salary">Salary</label>
+            <input type="number" id="salary" name="salary" placeholder="Salary" required>
+
+            <label for="is_full_time">Is Full Time</label>
+            <input type="checkbox" id="is_full_time" name="is_full_time">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Phone Number" required pattern="\d{10}" title="Please enter exactly 10 digits.">
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Address" required>
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="State" required>
+
+            <label for="last_performance_review">Last Performance Review</label>
+            <input type="datetime-local" id="last_performance_review" name="last_performance_review" required>
+        </div>
+        <div>
+            <input type="submit" name="submit" value="Submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+        .delete {
+            background-color: #dc3545;
+        }
+        .delete:hover {
+            background-color: #c82333;
+        }
+        .view {
+            background-color: #007bff;
+        }
+        .view:hover {
+            background-color: #0056b3;
+        }
+        .update {
+            background-color: #28a745;
+        }
+        .update:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Employee List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Department</th>
+        <th>Position</th>
+        <th>Actions</th>
+    </tr>
+    {% for i in Employees %}
+    <tr>
+        <td>{{i.employee_id}}</td>
+        <td>{{i.first_name}}</td>
+        <td>{{i.last_name}}</td>
+        <td>{{i.department}}</td>
+        <td>{{i.position}}</td>
+        <td class="actions">
+            <a href="{% url 'delete_employee' i.id %}"><button class="delete">Delete</button></a>
+            <a href="{% url 'view_employee' i.id %}"><button class="view">View</button></a>
+            <a href="{% url 'update_employee' i.id %}"><button class="update">Update</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
